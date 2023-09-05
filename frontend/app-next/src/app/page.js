@@ -4,12 +4,13 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 import styles from './page.module.css'
 import React from 'react';
+import axios from 'axios';
 
 export default function Home() {
-  const [dadosGithub, setDadosdoGithub] = React.useState({});
+  const [dadosGithub, setDadosdoGithub] = React.useState([]);
   
   React.useEffect(() =>{ 
-    fetch('https://api.github.com/users/agostin-afk')
+    fetch('http://127.0.0.1:8000/categorias/?format=json')
       .then((resposta) => {
           return resposta.json();
       })
@@ -17,15 +18,19 @@ export default function Home() {
           setDadosdoGithub(respostaP);
           console.log('resposta convertida',respostaP)
       })
+      .finally(() =>{
+        console.log(dadosGithub);
+      })
   }, [])
   console.log('dados do github',dadosGithub);
+  
   return (
     <div>
-   {dadosGithub.login} <br/>
-   {dadosGithub.name}
-   <br/>
-   {dadosGithub.public_repos}
-   </div>
-
+      {dadosGithub.map((item, index) => (
+        <div key={index}>
+          {item.nome}
+        </div>
+      ))}
+    </div>
   )
 }
