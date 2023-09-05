@@ -28,7 +28,7 @@ export default function Home() {
     <div>
       {dadosGithub.map((item, index) => (
         <div key={index}>
-          <p>O item de id {item.id} é {item.nome}</p><p>E possui a seguinte descrição: {item.descricao}</p>
+          {item.nome}
         </div>
       ))}
     </div>
