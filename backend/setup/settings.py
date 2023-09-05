@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'demandaProdutos',
     'Unidades',
     'rest_framework',
-    'corsheaders',
+    'corsheaders', # Para a API
     
 ]
 
@@ -35,15 +35,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # Para a API
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Substitua pelo domínio do seu aplicativo React
+    "http://localhost:3000",  # Substitua pelo domínio React
 ]
 
 CORS_ALLOW_METHODS = [
-    'GET',  # Inclua outros métodos HTTP, como POST, PUT, DELETE, conforme necessário
+    'GET',  # Inclua métodos como POST, PUT, DELETE
 ]
 
 ROOT_URLCONF = 'setup.urls'
