@@ -1,7 +1,14 @@
 from rest_framework import viewsets,generics
-from demandaProdutos.models import Unidade,SubUnidade,Carrinho,Categoria,Produto
-from demandaProdutos.serializer import CarrinhoSerializer,CategoriaSerializer,ProdutoSerializer
+from demandaProdutos.models import Unidade,SubUnidade,Carrinho,Categoria,Produto,Arquivo
+from demandaProdutos.serializer import CarrinhoSerializer,CategoriaSerializer,ProdutoSerializer,Uparquivoserializer
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
 
+class ReceberArquivo(viewsets.ModelViewSet):
+    queryset = Arquivo.objects.all()
+    serializer_class = Uparquivoserializer
 class ListarCategorias(viewsets.ModelViewSet):
     """listar categorias"""
     queryset = Categoria.objects.all()
@@ -35,3 +42,4 @@ class ListaCarrinhosUnidade(generics.ListAPIView):
         queryset = Carrinho.objects.filter(id=self.kwargs['pk'])
         return queryset
     serializer_class = CarrinhoSerializer
+

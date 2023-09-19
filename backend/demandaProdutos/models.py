@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from Unidades.models import SubUnidade,Unidade
 
 
+
+class Arquivo(models.Model):
+    nome = models.CharField(max_length=100)
+    dataUP = models.DateTimeField(auto_now_add=True)
+    arquivo = models.FileField(upload_to='midia/')
 class Categoria(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True, null=True)
@@ -41,8 +46,6 @@ class ItemCarrinho(models.Model):
 
     def __str__(self):
         return f"{self.produto} - {self.quantidade}"
-
-
 class Pedido(models.Model):
     STATUS_CHOICES = (
         ('pendente', 'Pendente'),
@@ -62,28 +65,4 @@ class Pedido(models.Model):
 
     def __str__(self):
         return f"Pedido #{self.id} - {self.status}"
-
-'''
-class pedidoDemanda(models.Model):
-    subUnidade = models.ForeignKey('Unidades.SubUnidade', on_delete=models.SET_NULL, blank=True, null=True)
-    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
-    aprovaPedido = models.BooleanField(default=False)
-
-
-
-class Demanda(models.Model):
-    STATUS_CHOICES = (
-        ('em analise','Em análise'),
-        ('enviado para apreciação', 'enviado para apreciação'),
-        ('em apreciação', 'Em apreciação')
-      
-    )
-    unidade = models.ForeignKey('Unidades.unidade', on_delete=models.SET_NULL, blank=True, null=True)
-    pedidos = models.ManyToManyField(Pedido,through='pedidoDemanda')
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='em analise')
-    data_pedido = models.DateTimeField(auto_now_add=True)
-    data_atualizacao = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"Demanda #{self.id} - {self.status}"
-'''
+    

@@ -70,4 +70,13 @@ class Migration(migrations.Migration):
             name='subunidade',
             field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='subUnidade_carrinho', to='Unidades.subunidade'),
         ),
+        migrations.CreateModel(
+            name='Arquivo',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('nome', models.CharField(max_length=100)),
+                ('dataUP', models.DateTimeField(auto_now_add=True)),
+                ('arquivo', models.FileField(upload_to='midia/')),
+            ],
+        ),
     ]
