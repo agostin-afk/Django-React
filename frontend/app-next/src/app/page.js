@@ -1,57 +1,45 @@
 'use client'
- 
-import { useEffect } from 'react'
-import Image from 'next/image'
-import styles from './page.module.css'
+
 import React from 'react';
-import axios from 'axios';
-import { useRef } from 'react';
 
 export default function Home() {
-  const [dadosAPI, setDadosAPI, setFeedbackMessage] = React.useState([]);
-  const filesElement = useRef(null);
-  const sendFile = async () => {
-    const dataForm = new FormData();
-    for (const file of filesElement.current.files) {
-      dataForm.append('file', file);
-    }
-    const res = await fetch(`http://127.0.0.1:8000/arquivos/`, {
-      method: 'POST',
-      body: dataForm,
-    });
-    const data = await res.json();
-    console.log(data);
-  };
-  React.useEffect(() =>{ 
-    fetch('http://127.0.0.1:8000/arquivos/') //Trocar pelo domínio da api que deseja 
-      .then((resposta) => {
-          return resposta.json();
-      })
-      .then((respostaP) => {
-          setDadosAPI(respostaP);
-          console.log('resposta convertida',respostaP)
-      })
-      .finally(() =>{
-        console.log(dadosAPI);
-      })
-  }, [])
-  console.log('dados da API',dadosAPI);
+  const [dadosAPI, setDadosAPI] = React.useState([]);
+  const [dadosProdutos, setDadosProdutos] = React.useState([]);
 
+  React.useEffect(() => {
+    fetch('http://127.0.0.1:8000/categorias/?format=json') //Trocar pelo domínio da api que deseja 
+      .then((resposta) => {
+        return resposta.json();
+      })
+      .then((resposta) => {
+        setDadosAPI(resposta);
+        console.log('resposta convertida de categorias', resposta)
+      }),
+      fetch('http://127.0.0.1:8000/produtos/?format=json')
+        .then((respostaProdutos) => {
+          return respostaProdutos.json();
+        })
+        .then((respostaProdutos) => {
+          setDadosProdutos(respostaProdutos);
+          console.log('resposta convertida de produtos', respostaProdutos)
+        })
+  }, [])
   return (
     <div>
-      <h1>Enviar arquivo</h1>
-      <form method="POST" action="http://127.0.0.1:8000/arquivos/">
-        <div>
-          <label>nome: </label>
-          <input type='text' name='nome'></input>
-          <br/>
-          <label>arquivo: </label>
-          <input type='file' name="arquivo"/>
-          <br/>
-          <br/>
+      {dadosAPI.map((categoria, indexCategoria) => (
+        <div key={indexCategoria}>
+          <p>
+            Categoria de nome {categoria.nome} existe e possui o numero {categoria.id}
+          </p>
+          {dadosProdutos.filter((produto) => produto.categoria === categoria.id)
+            .map((produtoFiltrado, indexProduto) => (
+          <p key={indexProduto}>
+            Existe um produto {produtoFiltrado.nome} e esse produto tem a categoria {produtoFiltrado.categoria}
+          </p>
+        ))}
         </div>
-        <button onClick={sendFile}>Enviar</button>
-      </form>
+      ))}
     </div>
   )
 }
+

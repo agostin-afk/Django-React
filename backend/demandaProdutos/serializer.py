@@ -2,7 +2,8 @@ from rest_framework import serializers
 from demandaProdutos.models import Categoria,Produto,Carrinho,ItemCarrinho,Pedido,Arquivo
 
 
-class Uparquivoserializer(serializers.ModelSerializer):
+class UparquivoSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Arquivo
         fields = '__all__'

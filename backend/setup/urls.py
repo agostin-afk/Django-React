@@ -22,7 +22,7 @@ urlpatterns = [
     path('subUnidade/<int:pk>/', DetalharSubUnidade.as_view()),
     path('produtos/<int:pk>/', DetalharProduto.as_view()),
    # path('unidade/<int:pk>/carrinhos/', ListaCarrinhosUnidade.as_view())
-   path('arquivo/<int:pk>/', ReceberArquivo.as_view({'get'}))
+    path('arquivo', ReceberArquivo.as_view({'get'}))
  
 ]
 
