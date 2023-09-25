@@ -3,13 +3,6 @@ from django.contrib.auth.models import User
 from Unidades.models import SubUnidade,Unidade
 
 
-
-class Arquivo(models.Model):
-    nome = models.CharField(max_length=100)
-    dataUP = models.DateTimeField(auto_now_add=True)
-    arquivo = models.FileField(upload_to='midia/')
-    def __str__(self):
-        return self.nome
 class Categoria(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True, null=True)

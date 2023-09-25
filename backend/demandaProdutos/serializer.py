@@ -1,12 +1,7 @@
 from rest_framework import serializers
-from demandaProdutos.models import Categoria,Produto,Carrinho,ItemCarrinho,Pedido,Arquivo
+from demandaProdutos.models import Categoria,Produto,Carrinho,ItemCarrinho,Pedido
 
 
-class UparquivoSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Arquivo
-        fields = '__all__'
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
