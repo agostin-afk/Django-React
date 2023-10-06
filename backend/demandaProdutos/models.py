@@ -2,7 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from Unidades.models import SubUnidade,Unidade
 
+class Imagem(models.Model):
+    descricao = models.CharField(max_length=30)
+    foto = models.ImageField()
 
+    def __str__(self):
+        return self.descricao
 class Categoria(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True, null=True)

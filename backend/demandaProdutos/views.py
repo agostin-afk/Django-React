@@ -1,10 +1,15 @@
 from rest_framework import viewsets,generics
-from demandaProdutos.models import Unidade,SubUnidade,Carrinho,Categoria,Produto
-from demandaProdutos.serializer import CarrinhoSerializer,CategoriaSerializer,ProdutoSerializer
+from demandaProdutos.models import Unidade,SubUnidade,Carrinho,Categoria,Produto,Imagem
+from demandaProdutos.serializer import CarrinhoSerializer,CategoriaSerializer,ProdutoSerializer,ImagemSerializer
 from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework import viewsets
+
+class ImagemViewSet(viewsets.ModelViewSet):
+    queryset = Imagem.objects.all()
+    serializer_class = ImagemSerializer
 class ListarCategorias(viewsets.ModelViewSet):
     """listar categorias"""
     queryset = Categoria.objects.all()
