@@ -12,18 +12,18 @@ export default function Home() {
       })
       .then((resposta) => {
         setDadosAPI(resposta);
-        console.log('resposta convertida de categorias', resposta)
+        console.log('resposta convertida', resposta)
       })
   }, [])
   return (
-    <div>
-      {dadosAPI.map((item, index) => ( // Pode trocar o "item" por "produto" por exemplo, trocando também os que estão dentro das chaves
-        <div key={index}>
-          <p>teste</p>
-          <image source={item.foto} />
-        </div>
-      ))}
+   <div>
+  {dadosAPI.map((item, index) => (
+    <div key={index}>
+      <p>teste {item.foto}</p>
+      <img src={item.foto} />
     </div>
+  ))}
+</div>
 
   )
 }
