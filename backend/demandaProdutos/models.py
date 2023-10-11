@@ -2,6 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from Unidades.models import SubUnidade,Unidade
 
+
+class Usuarios(models.Model):
+    nome = models.CharField(max_length=30)
+    senha = models.CharField()
+    login = models.CharField(max_length=50)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_stiadmim = models.BooleanField(default=False)
+    def __str__(self):
+        return self.nome
 class Imagem(models.Model):
     descricao = models.CharField(max_length=30)
     foto = models.ImageField()

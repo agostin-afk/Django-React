@@ -1,6 +1,10 @@
 from rest_framework import serializers
-from demandaProdutos.models import Categoria,Produto,Carrinho,ItemCarrinho,Pedido,Imagem
+from demandaProdutos.models import Categoria,Produto,Carrinho,ItemCarrinho,Pedido,Imagem, Usuarios
 
+class UsuariosSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Usuarios
+        fields = '__all__'
 
 class ImagemSerializer(serializers.ModelSerializer):
 

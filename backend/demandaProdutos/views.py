@@ -1,12 +1,15 @@
 from rest_framework import viewsets,generics
-from demandaProdutos.models import Unidade,SubUnidade,Carrinho,Categoria,Produto,Imagem
-from demandaProdutos.serializer import CarrinhoSerializer,CategoriaSerializer,ProdutoSerializer,ImagemSerializer
+from demandaProdutos.models import Unidade,SubUnidade,Carrinho,Categoria,Produto,Imagem,Usuarios
+from demandaProdutos.serializer import CarrinhoSerializer,CategoriaSerializer,ProdutoSerializer,ImagemSerializer,UsuariosSerializer
 from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import viewsets
 
+class UsuariosViewsSet(viewsets.ModelViewSet):
+    queryset = Usuarios.objects.all()
+    serializer_class = UsuariosSerializer
 class ImagemViewSet(viewsets.ModelViewSet):
     queryset = Imagem.objects.all()
     serializer_class = ImagemSerializer

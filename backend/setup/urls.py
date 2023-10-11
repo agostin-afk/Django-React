@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.urls import path,include
-from demandaProdutos.views import ListarCategorias,ListarProdutos,DetalharProduto,ListaCarrinhosUnidade,ImagemViewSet
+from demandaProdutos.views import ListarCategorias,ListarProdutos,DetalharProduto,ListaCarrinhosUnidade,ImagemViewSet,UsuariosViewsSet
 from Unidades.views import ListarUnidades,DetalharSubUnidade,ListarSubUnidades,DetalharUnidade,DetalharSubUnidade
 from rest_framework import routers
 from django.conf import settings
@@ -19,6 +19,7 @@ router.register('unidades',ListarUnidades,basename='Unidades')
 router.register('categorias',ListarCategorias,basename='Categorias')
 router.register('produtos',ListarProdutos,basename='Produtos')
 router.register('imagens', ImagemViewSet)
+router.register('usuarios',UsuariosViewsSet, basename='Usuarios')
 #router.register('carrinhos',ListaCarrinhosUnidade,basename='Carrinhos')
 
 urlpatterns = [
