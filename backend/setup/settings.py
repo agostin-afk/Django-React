@@ -24,8 +24,14 @@ INSTALLED_APPS = [
     'Unidades',
     'rest_framework',
     'corsheaders', # Para a API
+    'django.contrib.sites',#allauth
+    'allauth',#allauth
+    'allauth.account',#allauth
+    'allauth.socialaccount',#allauth
     
 ]
+
+SITE_ID = 1 #allauth
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -36,6 +42,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware', # Para a API
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -84,6 +91,13 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+
+    'django.contrib.auth.backends.ModelBackend',
+
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
